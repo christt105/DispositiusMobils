@@ -20,6 +20,7 @@ void myApp() {
         body: Column(
           children: <Widget>[
             TextField(controller: txt, textAlign: TextAlign.center),
+            Text(msg),
             Image.asset('assets/hi.jpg'),
             Center(
               child: Padding(
@@ -36,19 +37,19 @@ void myApp() {
                       splashColor: Colors.purple,
                       onPressed: () {
                         Random r = Random();
-                        int a = r.nextInt(5);
+                        int a = r.nextInt(6);
                         if (a == 0) {
-                          msg = 'hey1';
+                          msg = 'sabes';
                         } else if (a == 1) {
-                          msg = 'hey2';
+                          msg = 'que';
                         } else if (a == 2) {
-                          msg = 'hey3';
+                          msg = 'es';
                         } else if (a == 3) {
-                          msg = 'hey4';
+                          msg = 'dificil';
                         } else if (a == 4) {
-                          msg = 'hey5';
+                          msg = 'leer';
                         } else if (a == 5) {
-                          msg = 'hey6';
+                          msg = 'desordenadamente';
                         }
                         txt.text = msg;
                       },

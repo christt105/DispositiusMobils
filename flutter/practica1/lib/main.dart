@@ -29,16 +29,22 @@ class GamePage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 6,
-            child: _Header(game: game),
+            child: _Header(
+                game:
+                    game), // Contains: {Blurred background, Cover Image, Back Button, Watch Trailer}
           ),
           Expanded(
             flex: 5,
-            child: _Body(game: game),
+            child: _Body(
+                game:
+                    game), // Contains: {'Action', Game name, Consoles, Description}
           ),
-          _Button(), // No Expanded because it will have the same height
+          _Button(), // No Expanded because it will always have the same height | + ADD GAME
           Expanded(
             flex: 3,
-            child: _Bottom(game: game),
+            child: _Bottom(
+                game:
+                    game), // Contains: {'Information', White line, Background image with mask}
           ),
         ],
       ),
@@ -58,30 +64,32 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
+        // Para tener varios elementos posicionados uno encima del otro
         children: <Widget>[
-          Container(
+          Container(//Background Image
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(game.backgroundImage),
-                  fit: BoxFit.fitWidth),
+                image: AssetImage(game.backgroundImage), // Imagen dentro de una BoxDecoration para que se pueda manipular
+                fit: BoxFit.fitWidth, // La imagen se ajustará a todo el ancho de la pantalla
+              ),
             ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+            child: BackdropFilter(  // Filtro para hacer blur
+              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0), // Intensidad en X y en Y del filtro | necesario el import: 'dart:ui';
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.0),
+                  color: Colors.white.withOpacity(0.0), // Se crea una caja blanca que cubra todo y se le baja la opacidad. Se le aplica el filtro sobre esta caja y no sobre la imagen
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 130),
+          Padding(                    //Watch Trailer
+            padding: const EdgeInsets.symmetric(horizontal: 130), // :(
             child: Padding(
                 padding: const EdgeInsets.only(top: 30, bottom: 70),
                 child: RaisedButton(
                   onPressed: () {},
-                  textTheme: ButtonTextTheme.primary,
-                  color: Color(0),
+                  textTheme: ButtonTextTheme.primary, // Centra el botón
+                  color: Colors.transparent,
                   child: Column(
                     children: <Widget>[
                       Icon(
@@ -96,7 +104,7 @@ class _Header extends StatelessWidget {
                   ),
                 )),
           ),
-          Center(
+          Center(                       // Main Image
             child: Padding(
               padding: const EdgeInsets.only(bottom: 12, top: 75),
               child: Container(
@@ -107,10 +115,10 @@ class _Header extends StatelessWidget {
                   image: DecorationImage(
                     image: AssetImage(game.mainImage),
                   ),
-                  boxShadow: [
-                    BoxShadow(
+                  boxShadow: [  // Sombra debajo del container
+                    BoxShadow(  // La sombra se aplicará sobre el container entero, no sobre la foto
                       color: Colors.black,
-                      blurRadius: 10.0,
+                      blurRadius: 10.0, 
                       spreadRadius: 0.15,
                       offset: Offset(
                         5.0,
@@ -123,7 +131,7 @@ class _Header extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 50), // Botón atrás
             child: Container(
               width: 50,
               height: 50,
@@ -155,9 +163,9 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, top: 10.0, bottom: 15.0),
+      padding: const EdgeInsets.only(left: 15.0, top: 15.0, bottom: 15.0), // Margen general
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
             alignment: Alignment.centerLeft,
@@ -165,9 +173,6 @@ class _Body extends StatelessWidget {
               "ACTION",
               style: TextStyle(fontWeight: FontWeight.w300),
             ),
-          ),
-          SizedBox(
-            height: 10,
           ),
           Container(
             alignment: Alignment.centerLeft,
@@ -177,17 +182,12 @@ class _Body extends StatelessWidget {
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              for(var item in game.consoles) _ConsoleContainer(item),
-            ],
-          ),
-          SizedBox(
-            height: 15,
+              for (var item in game.consoles) _ConsoleContainer(item),  /* game.consoles es una lista de consolas que contienen un String y un color.
+                                                                           Creará una caja con el nombre y el color correspondiente de todas las consolas que declares en la clase*/
+            ],                                                          
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
@@ -238,12 +238,12 @@ class _Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 55,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width, // Esto devuelve el ancho del telefono
       child: FlatButton(
         onPressed: () {},
         child: Text("+ ADD GAME"),
         color: Colors.pink,
-        shape: ContinuousRectangleBorder(),
+        shape: ContinuousRectangleBorder(), // Bordes duros
       ),
     );
   }
@@ -264,15 +264,16 @@ class _Bottom extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          ShaderMask(
+          ShaderMask(                         // ShaderMask crea una máscara a lo que le digas y como se lo digas
               shaderCallback: (rect) {
-                return LinearGradient(
+                return LinearGradient(        // Degradado Lineal
                   begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  end: Alignment.bottomCenter,      //Los limites se aplican a su child
                   colors: [Colors.black, Colors.transparent],
-                ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+                ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height),
+                );
               },
-              blendMode: BlendMode.dstIn,
+              blendMode: BlendMode.dstIn, // Tipo de blend (como las capas de Photoshop)
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),

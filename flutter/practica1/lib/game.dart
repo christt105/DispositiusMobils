@@ -27,7 +27,7 @@ final hk = Game(
   'The game was released for Microsoft Windows, macOS, and Linux in 2017, and for the '
   'Nintendo Switch, PlayStation 4, Xbox One in 2018. Development was partially funded '
   'through a Kickstarter crowdfunding campaign, raising over 35,000€ by the end of 2014.',
-  'assets/cover.jpg',
+  'assets/cover.png',
   'assets/backCover.png',
   'assets/info.png'
   );

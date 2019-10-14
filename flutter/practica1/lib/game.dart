@@ -1,6 +1,14 @@
+import 'package:flutter/material.dart';
+
+class Console{
+  String name;
+  Color color;
+  Console(this.name,this.color);
+}
+
 class Game {
   String name;
-  List<String> consoles;
+  List<Console> consoles;
   String description;
   String mainImage;
   String backgroundImage;
@@ -18,10 +26,7 @@ class Game {
 
 final hk = Game(
   'Hollow Knight',
-  ['PC', 'PS4', 'NINTENDO SWITCH', 'XBOX ONE'],
-  /*'Forge your own path in Hollow Knight! An epic action adventure through a vast ruined '
-  'kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and '
-  'befriend bizarre bugs, all in a classic, hand-drawn 2D style.'*/
+  [new Console('PC', Colors.grey), new Console('PS4', Colors.blue), new Console('NINTENDO SWITCH', Colors.red), new Console('XBOX ONE',Colors.green)],
 
   'Hollow Knight is a Metroidvania video game developed and published by Team Cherry. '
   'The game was released for Microsoft Windows, macOS, and Linux in 2017, and for the '

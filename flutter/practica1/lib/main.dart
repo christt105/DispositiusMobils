@@ -58,7 +58,6 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
-        alignment: Alignment.bottomCenter,
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
@@ -76,30 +75,69 @@ class _Header extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Container(
-              height: 220,
-              width: 145,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                image: DecorationImage(
-                  image: AssetImage(game.mainImage),
+            padding: const EdgeInsets.symmetric(horizontal: 130),
+            child: Padding(
+                padding: const EdgeInsets.only(top: 30, bottom: 70),
+                child: RaisedButton(
+                  onPressed: () {},
+                  textTheme: ButtonTextTheme.primary,
+                  color: Color(0),
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.keyboard_arrow_up,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        "Watch Trailer",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                )),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12, top: 75),
+              child: Container(
+                height: 220,
+                width: 145,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  image: DecorationImage(
+                    image: AssetImage(game.mainImage),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10.0,
+                      spreadRadius: 0.15,
+                      offset: Offset(
+                        5.0,
+                        10.0,
+                      ),
+                    )
+                  ],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10.0,
-                    spreadRadius: 0.15,
-                    offset: Offset(
-                      5.0,
-                      10.0,
-                    ),
-                  )
-                ],
               ),
             ),
           ),
-          Container(width: 60,height: 60,color: Colors.blue,alignment: Alignment.centerLeft,),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Container(
+              width: 50,
+              height: 50,
+              color: Colors.blue,
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                ),
+                iconSize: 20,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -145,39 +183,7 @@ class _Body extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4, right: 4),
-                  child: Text(
-                    "PS4",
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
-                  ),
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3),
-                  color: Colors.blue,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Container(
-                  height: 20,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 4, right: 4),
-                    child: Text(
-                      "PC",
-                      style: TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
+              for(var item in game.consoles) _ConsoleContainer(item),
             ],
           ),
           SizedBox(
@@ -191,6 +197,33 @@ class _Body extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ConsoleContainer extends StatelessWidget {
+  final Console console;
+  _ConsoleContainer(this.console);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 15),
+      child: Container(
+        height: 20,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 4, right: 4),
+          child: Text(
+            console.name,
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+          ),
+        ),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          color: console.color,
+        ),
       ),
     );
   }
@@ -226,26 +259,54 @@ class _Bottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (rect) {
-        return LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.black, Colors.transparent],
-        ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-      },
-      blendMode: BlendMode.dstIn,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-                image: AssetImage(game.infoImage),
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.topCenter),
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          ShaderMask(
+              shaderCallback: (rect) {
+                return LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black, Colors.transparent],
+                ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+              },
+              blendMode: BlendMode.dstIn,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                      image: AssetImage(game.infoImage),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.topCenter),
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.only(top: 50, right: 190),
+            child: Text(
+              "Information",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 32,
+              ),
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Opacity(
+              opacity: 0.7,
+              child: Container(
+                width: 85,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

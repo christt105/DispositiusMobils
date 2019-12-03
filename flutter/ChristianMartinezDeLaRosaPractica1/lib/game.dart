@@ -26,7 +26,7 @@ class Game {
 
 final hk = Game(
   'Hollow Knight',
-  [new Console('PC', Colors.grey), new Console('PS4', Colors.blue), new Console('NINTENDO SWITCH', Colors.red), new Console('XBOX ONE',Colors.green)],
+  [Console('PC', Colors.grey), Console('PS4', Colors.blue), Console('NINTENDO SWITCH', Colors.red), Console('XBOX ONE',Colors.green)],
 
   'Hollow Knight is a Metroidvania video game developed and published by Team Cherry. '
   'The game was released for Microsoft Windows, macOS, and Linux in 2017, and for the '
@@ -36,3 +36,4 @@ final hk = Game(
   'assets/backCover.png',
   'assets/info.png'
   );
+

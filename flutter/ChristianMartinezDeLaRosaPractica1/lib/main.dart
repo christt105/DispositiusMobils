@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'game.dart';
 import 'dart:ui'; // para el ImageFilter para crear un efecto de Blur
 
-void main() {
-  runApp(CarInfoApp());
-}
+void main() => runApp(GameInfoApp());
 
-class CarInfoApp extends StatelessWidget {
+class GameInfoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -196,10 +194,7 @@ class _Body extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              for (var item in game.consoles)
-                _ConsoleContainer(
-                    item), /* game.consoles es una lista de consolas que contienen un String y un color.
-                                                                           Creará una caja con el nombre y el color correspondiente de todas las consolas que declares en la clase*/
+              for (var item in game.consoles) _ConsoleContainer(item),
             ],
           ),
           Padding(

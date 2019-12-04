@@ -27,7 +27,7 @@ class Game {
       consoles.add(
         Console(
           console['text'],
-          Color.fromARGB(1, console['color']['r'], console['color']['g'], console['color']['b']),
+          Color.fromARGB(255, console['color']['r'], console['color']['g'], console['color']['b']),
         ),
       );
     }

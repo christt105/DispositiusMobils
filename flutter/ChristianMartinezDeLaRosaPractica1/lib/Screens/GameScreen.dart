@@ -178,8 +178,10 @@ class _Body extends StatelessWidget {
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Wrap(
+            direction: Axis.horizontal,
+            runSpacing: 5,
+            spacing: 10,
             children: <Widget>[
               for (var item in game.consoles) _ConsoleContainer(item),
             ],
@@ -203,24 +205,57 @@ class _ConsoleContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15),
-      child: Container(
-        height: 20,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 4, right: 4),
-          child: Text(
-            console.name,
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+    return Container(
+      height: 20,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(3),
+        color: console.color,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Text(
+          console.name,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 12,
           ),
-        ),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          color: console.color,
         ),
       ),
     );
+    // return Container(
+    //   constraints: BoxConstraints(maxHeight: 20),
+    //       child: RaisedButton(
+    //         color: console.color,
+    //           child: Text(console.name,
+    //             style:TextStyle(
+    //               fontWeight: FontWeight.w700,
+    //               fontSize: 12,
+    //             ),),
+    //           onPressed: () {},
+    //           shape: RoundedRectangleBorder(
+    //               borderRadius: BorderRadius.circular(
+    //                   3.0))
+    //       ),
+    // );
+    // return Padding(
+    //   padding: const EdgeInsets.only(right: 15),
+    //   child: Container(
+    //     height: 20,
+    //     width: 30,
+    //     child: Padding(
+    //       padding: const EdgeInsets.only(left: 4, right: 4),
+    //       child: Text(
+    //         console.name,
+    //         style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+    //       ),
+    //     ),
+    //     alignment: Alignment.center,
+    //     decoration: BoxDecoration(
+    //       borderRadius: BorderRadius.circular(3),
+    //       color: console.color,
+    //     ),
+    //   ),
+    // );
   }
 }
 

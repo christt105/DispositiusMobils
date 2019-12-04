@@ -8,12 +8,13 @@ class Console {
 
 class Game {
   String name;
-  List<Console> consoles;
+  List<String> consoles;
   String description;
   String mainImage;
   String backgroundImage;
   String infoImage;
   String card;
+  String trailer;
 
   Game.fromJson(Map<String, dynamic> json)
       : name = json['title'],
@@ -21,18 +22,14 @@ class Game {
         mainImage = json['cover'],
         backgroundImage = json['back_cover'],
         card = json['card'],
+        trailer = json['yt_video'],
         infoImage = json['bottom_image'] {
-          consoles = List<Console>();
+    consoles = List<String>();
     for (var console in json['console']) {
-      consoles.add(
-        Console(
-          console['text'],
-          Color.fromARGB(255, console['color']['r'], console['color']['g'], console['color']['b']),
-        ),
-      );
+      consoles.add(console);
     }
   }
 
   Game(this.name, this.consoles, this.description, this.mainImage,
-      this.backgroundImage, this.infoImage, this.card);
+      this.backgroundImage, this.infoImage, this.card, this.trailer);
 }

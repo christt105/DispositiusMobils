@@ -1,250 +1,180 @@
 {
+    "platforms": [
+        {
+            "text": "PC",
+            "color": {
+                "r": 128,
+                "g": 128,
+                "b": 128
+            }
+        },
+        {
+            "text": "PS4",
+            "color": {
+                "r": 38,
+                "g": 106,
+                "b": 197
+            }
+        },
+        {
+            "text": "NINTENDO SWITCH",
+            "color": {
+                "r": 211,
+                "g": 36,
+                "b": 36
+            }
+        },
+        {
+            "text": "NINTENDO 3DS",
+            "color": {
+                "r": 90,
+                "g": 21,
+                "b": 228
+            }
+        },
+        {
+            "text": "XBOX ONE",
+            "color": {
+                "r": 46,
+                "g": 202,
+                "b": 39
+            }
+        },
+        {
+            "text": "PS3",
+            "color": {
+                "r": 22,
+                "g": 163,
+                "b": 220
+            }
+        },
+        {
+            "text": "XBOX 360",
+            "color": {
+                "r": 37,
+                "g": 118,
+                "b": 29
+            }
+        },
+        {
+            "text": "ANDROID",
+            "color": {
+                "r": 73,
+                "g": 123,
+                "b": 67
+            }
+        },
+        {
+            "text": "iOS",
+            "color": {
+                "r": 86,
+                "g": 58,
+                "b": 21
+            }
+        }
+    ],
     "games": [
         {
             "title": "Hollow Knight",
             "console": [
-                {
-                    "text": "PC",
-                    "color": {
-                        "r": 128,
-                        "g": 128,
-                        "b": 128
-                    }
-                },
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "NINTENDO SWITCH",
-                    "color": {
-                        "r": 255,
-                        "g": 0,
-                        "b": 0
-                    }
-                },
-                {
-                    "text": "XBOX ONE",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                }
+                "PC",
+                "PS4",
+                "XBOX ONE",
+                "NINTENDO SWITCH"
             ],
             "text": "Enfréntate a las profundidades de un reino olvidado de insectos y héroes con Hollow Night. Bajo la deteriorada ciudad de Bocasucia yace un antiguo reino en ruinas. A muchos les atrae la vida bajo la superficie y van en busca de riquezas, gloria o respuestas a viejos enigmas.  Como el enigmático Hollow Knight, atravesarás las profundidades, desentrañarás sus misterios y vencerás sus males.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "cover": "assets/HollowKnight_C.png",
+            "card": "assets/HollowKnight_L.png",
+            "back_cover": "assets/HollowKnight_B.png",
+            "bottom_image": "assets/HollowKnight_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=UAO2urG23S4&ab_channel=TeamCherry"
         },
         {
             "title": "Horizon Zero Dawn",
             "console": [
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                }
+                "PS4"
             ],
             "text": "En un mundo exuberante y postapocalíptico en el que la naturaleza se ha adueñado de las ruinas de una civilización olvidada, los restos de la humanidad viven en tribus de cazadores recolectores. Las máquinas, criaturas mecánicas de origen desconocido, les han arrebatado el dominio de las tierras salvajes.",
-            "cover": "assets/cover.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png",
-            "card": "assets/card.png"
+            "cover": "assets/HorizonZeroDawn_C.png",
+            "card": "assets/HorizonZeroDawn_L.png",
+            "back_cover": "assets/HorizonZeroDawn_B.png",
+            "bottom_image": "assets/HorizonZeroDawn_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=_BvZvkT5QHw&ab_channel=PlayStationEspa%C3%B1a"
         },
         {
             "title": "Spider-Man",
             "console": [
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                }
+                "PS4"
             ],
             "text": "Ponte en la piel de un curtido experimentado y maduro Peter Parker y consigue salvar Manhattan de criminales y villanos todo esto compaginándolo con su vida personal. Disfruta de un gran mundo abierto nunca visto hasta ahora, de un innovador sistema para subir de nivel y de diferentes personajes jugables como Mary Jane.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "cover": "assets/Spiderman_C.png",
+            "card": "assets/Spiderman_L.png",
+            "back_cover": "assets/Spiderman_B.png",
+            "bottom_image": "assets/Spiderman_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=q4GdJVvdxss&ab_channel=PlayStation"
         },
         {
             "title": "Minit",
             "console": [
-                {
-                    "text": "PC",
-                    "color": {
-                        "r": 128,
-                        "g": 128,
-                        "b": 128
-                    }
-                },
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "XBOX ONE",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                }
+                "PC",
+                "PS4",
+                "XBOX ONE",
+                "NINTENDO SWITCH",
+                "ANDROID",
+                "iOS"
             ],
             "text": "Arropado por una estética monocromática rabiosamente retro, pero efectiva, 'Minit' nos pone en la piel de un ser que vive sin problemas en su pequeña casa. Tiene un perro y un pequeño huerto al lado, y buenas vistas al mar.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "cover": "assets/Minit_C.png",
+            "card": "assets/Minit_L.png",
+            "back_cover": "assets/Minit_B.png",
+            "bottom_image": "assets/Minit_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=a9plTKlhWjg&ab_channel=DevolverDigital"
         },
         {
             "title": "Skyrim",
             "console": [
-                {
-                    "text": "PC",
-                    "color": {
-                        "r": 128,
-                        "g": 128,
-                        "b": 128
-                    }
-                },
-                {
-                    "text": "PS3",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "NINTENDO SWITCH",
-                    "color": {
-                        "r": 255,
-                        "g": 0,
-                        "b": 0
-                    }
-                },
-                {
-                    "text": "XBOX 360",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                },
-                {
-                    "text": "XBOX ONE",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                }
+                "PC",
+                "PS4",
+                "XBOX ONE",
+                "NINTENDO SWITCH",
+                "PS3",
+                "XBOX 360"
             ],
             "text": "El soberano de Skyrim ha sido asesinado. A medida que surgen aspirantes al trono, se van formando alianzas. En mitad de este conflicto, resurge un antiguo mal mucho más peligroso: los dragones. El futuro de Skyrim, incluso el del propio Imperio, pende de un hilo, mientras aguardan la llegada vaticinada del Sangre de dragón, un héroe dotado del poder de La Voz, el único que puede hacer frente a los dragones.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "cover": "assets/Skyrim_C.png",
+            "card": "assets/Skyrim_L.png",
+            "back_cover": "assets/Skyrim_B.png",
+            "bottom_image": "assets/Skyrim_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=JSRtYpNRoN0&ab_channel=BethesdaSoftworks"
         },
         {
             "title": "Pokémon: Ruby Omega",
             "console": [
-                {
-                    "text": "NINTENDO 3DS",
-                    "color": {
-                        "r": 255,
-                        "g": 0,
-                        "b": 0
-                    }
-                }
+                "NINTENDO 3DS"
             ],
             "text": "Revisita o descubre por primera vez la región de Hoenn, un inmenso lugar en el que vivir una nueva aventura y descubrir los Pokémon que allí habitan. Prepara tu Pokédex, compra Pokéball y prepárate para recorrer todos los rincones del lugar para convertirte en un verdadero maestro Pokémon.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "cover": "assets/Pokemon_C.png",
+            "card": "assets/Pokemon_L.png",
+            "back_cover": "assets/Pokemon_B.png",
+            "bottom_image": "assets/Pokemon_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=wjT6OQknxX4&ab_channel=IGN"
         },
         {
             "title": "Minecraft",
             "console": [
-                {
-                    "text": "PC",
-                    "color": {
-                        "r": 128,
-                        "g": 128,
-                        "b": 128
-                    }
-                },
-                {
-                    "text": "PS3",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "PS4",
-                    "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 255
-                    }
-                },
-                {
-                    "text": "NINTENDO SWITCH",
-                    "color": {
-                        "r": 255,
-                        "g": 0,
-                        "b": 0
-                    }
-                },
-                {
-                    "text": "XBOX 360",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                },
-                {
-                    "text": "XBOX ONE",
-                    "color": {
-                        "r": 0,
-                        "g": 255,
-                        "b": 0
-                    }
-                }
+                "PC",
+                "PS4",
+                "XBOX ONE",
+                "NINTENDO SWITCH",
+                "PS3",
+                "XBOX 360"
             ],
-            "text": "Revisita o descubre por primera vez la región de Hoenn, un inmenso lugar en el que vivir una nueva aventura y descubrir los Pokémon que allí habitan. Prepara tu Pokédex, compra Pokéball y prepárate para recorrer todos los rincones del lugar para convertirte en un verdadero maestro Pokémon.",
-            "cover": "assets/cover.png",
-            "card": "assets/card.png",
-            "back_cover": "assets/backCover.png",
-            "bottom_image": "assets/info.png"
+            "text": "Explora mundos infinitos y construye cualquier cosa, desde la casa más sencilla hasta el más grandioso de los castillos. Juega en modo creativo con recursos ilimitados o extrae de las profundidades del mundo en el modo supervivencia para crear armas y armaduras que te defiendan de peligrosas criaturas. Construye, explora y sobrevive en solitario o con amigos.",
+            "cover": "assets/Minecraft_C.png",
+            "card": "assets/Minecraft_L.png",
+            "back_cover": "assets/Minecraft_B.png",
+            "bottom_image": "assets/Minecraft_I.png",
+            "yt_video": "https://www.youtube.com/watch?v=gcf9FM4TbN4&ab_channel=Minecraft"
         }
     ]
 }

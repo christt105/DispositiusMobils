@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:practica1/Screens/FavouriteList.dart';
 import 'package:practica1/Screens/GameScreen.dart';
 import 'package:practica1/game.dart';
 
@@ -11,6 +12,7 @@ class GameList extends StatefulWidget {
 
 class _GameListState extends State<GameList> {
   List<Game> _games;
+  Map<String, Color> _platform;
 
   @override
   void initState() {
@@ -20,9 +22,17 @@ class _GameListState extends State<GameList> {
 
   Future<void> _loadGames() async {
     _games = List<Game>();
+    _platform = Map<String, Color>();
     String data =
         await DefaultAssetBundle.of(context).loadString('assets/Games.json');
     var json = jsonDecode(data);
+    for (var p in json['platforms']) {
+      _platform.putIfAbsent(
+        p['text'],
+        () => Color.fromARGB(
+            255, p['color']['r'], p['color']['g'], p['color']['b']),
+      );
+    }
     for (var i in json['games']) {
       _games.add(Game.fromJson(i));
     }
@@ -37,7 +47,10 @@ class _GameListState extends State<GameList> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => FavList()));
+        },
         child: Icon(Icons.favorite),
         foregroundColor: Colors.red,
         backgroundColor: Colors.grey[600],
@@ -56,7 +69,8 @@ class _GameListState extends State<GameList> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => GamePage(_games[index])));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => GamePage(_games[index], _platform)));
                   },
                   child: Card(
                     clipBehavior: Clip.antiAliasWithSaveLayer,

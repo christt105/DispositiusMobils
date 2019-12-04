@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  url_launcher: ^5.2.7
+  provider: ^3.2.0
+
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
@@ -20,9 +23,39 @@ flutter:
   uses-material-design: true
 
   assets:
-   - assets/cover.png
-   - assets/backCover.png
-   - assets/info.png
    - assets/Games.json
-   - assets/card.png
    
+   - assets/HollowKnight_C.png
+   - assets/HollowKnight_L.png
+   - assets/HollowKnight_I.png
+   - assets/HollowKnight_B.png
+
+   - assets/HorizonZeroDawn_C.png
+   - assets/HorizonZeroDawn_L.png
+   - assets/HorizonZeroDawn_I.png
+   - assets/HorizonZeroDawn_B.png
+
+   - assets/Spiderman_C.png
+   - assets/Spiderman_L.png
+   - assets/Spiderman_I.png
+   - assets/Spiderman_B.png
+
+   - assets/Minit_C.png
+   - assets/Minit_L.png
+   - assets/Minit_I.png
+   - assets/Minit_B.png
+   
+   - assets/Pokemon_C.png
+   - assets/Pokemon_L.png
+   - assets/Pokemon_I.png
+   - assets/Pokemon_B.png
+
+   - assets/Skyrim_C.png
+   - assets/Skyrim_L.png
+   - assets/Skyrim_I.png
+   - assets/Skyrim_B.png
+
+   - assets/Minecraft_C.png
+   - assets/Minecraft_L.png
+   - assets/Minecraft_I.png
+   - assets/Minecraft_B.png

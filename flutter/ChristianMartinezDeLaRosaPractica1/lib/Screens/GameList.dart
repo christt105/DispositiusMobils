@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:practica1/Containers/game.dart';
 import 'package:practica1/Screens/FavouriteList.dart';
 import 'package:practica1/Screens/GameScreen.dart';
-import 'package:practica1/game.dart';
+
+import 'package:path_provider/path_provider.dart';
 
 class GameList extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class GameList extends StatefulWidget {
 class _GameListState extends State<GameList> {
   List<Game> _games;
   Map<String, Color> _platform;
+  Map<String, bool> _favourites;
 
   @override
   void initState() {
@@ -25,17 +29,34 @@ class _GameListState extends State<GameList> {
     _platform = Map<String, Color>();
     String data =
         await DefaultAssetBundle.of(context).loadString('assets/Games.json');
-    var json = jsonDecode(data);
-    for (var p in json['platforms']) {
+    var _json_games = jsonDecode(data);
+
+    for (var p in _json_games['platforms']) {
       _platform.putIfAbsent(
         p['text'],
         () => Color.fromARGB(
             255, p['color']['r'], p['color']['g'], p['color']['b']),
       );
     }
-    for (var i in json['games']) {
+    for (var i in _json_games['games']) {
       _games.add(Game.fromJson(i));
     }
+
+    _favourites = Map<String, bool>();
+    try {
+      Directory dir = await getApplicationDocumentsDirectory();
+      File file = File('${dir.path}/fav.json');
+      String fileContents = await file.readAsString();
+      List jsonFav = jsonDecode(fileContents);
+      for (var f in jsonFav) {
+        _favourites[f['game']] = f['fav'];
+      }
+    } catch (e) {
+      for (var g in _games) {
+        _favourites[g.name] = false;
+      }
+    }
+
     super.setState(() {});
   }
 
@@ -48,8 +69,8 @@ class _GameListState extends State<GameList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => FavList()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => FavList(_games, _favourites)));
         },
         child: Icon(Icons.favorite),
         foregroundColor: Colors.red,
@@ -69,8 +90,13 @@ class _GameListState extends State<GameList> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => GamePage(_games[index], _platform)));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(
+                            builder: (_) => GamePage(
+                                  _games[index],
+                                  _platform,
+                                  _favourites,
+                                )));
                   },
                   child: Card(
                     clipBehavior: Clip.antiAliasWithSaveLayer,

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:practica1/game.dart';
+import 'package:practica1/Containers/game.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 class GamePage extends StatelessWidget {
   final Game game;
   final Map<String, Color> _platform;
-  const GamePage(this.game, this._platform);
+  Map<String, bool> _favourites;
+
+  GamePage(this.game, this._platform, this._favourites);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class GamePage extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _Header(),
+                _Header(this),
                 _Body(),
-                _Button(),
+                _Button(this),
                 _Bottom(),
               ],
             ),
@@ -36,6 +38,9 @@ class GamePage extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
+  GamePage parent;
+  _Header(this.parent);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,7 +77,8 @@ class _Header extends StatelessWidget {
             child: Padding(
                 padding: const EdgeInsets.only(top: 30, bottom: 70),
                 child: RaisedButton(
-                  onPressed: () => _launchURL(Provider.of<Game>(context).trailer),
+                  onPressed: () =>
+                      _launchURL(Provider.of<Game>(context).trailer),
                   textTheme: ButtonTextTheme.primary, // Centra el botón
                   color: Colors.transparent,
                   child: Column(
@@ -221,7 +227,7 @@ class _ConsoleContainer extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3),
-        color: Provider.of<Map<String,Color>>(context)[console],
+        color: Provider.of<Map<String, Color>>(context)[console],
       ),
       child: Padding(
         padding: const EdgeInsets.all(3.0),
@@ -237,7 +243,15 @@ class _ConsoleContainer extends StatelessWidget {
   }
 }
 
-class _Button extends StatelessWidget {
+class _Button extends StatefulWidget {
+  GamePage _parent;
+  _Button(this._parent);
+
+  @override
+  __ButtonState createState() => __ButtonState();
+}
+
+class __ButtonState extends State<_Button> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -246,9 +260,15 @@ class _Button extends StatelessWidget {
           .size
           .width, // Esto devuelve el ancho del telefono
       child: FlatButton(
-        onPressed: () {},
-        child: Text("+ ADD GAME"),
-        color: Colors.pink,
+        onPressed: () {
+          widget._parent._favourites[widget._parent.game.name] = !widget._parent._favourites[widget._parent.game.name];
+          
+          setState(() {});
+        },
+        child: (widget._parent._favourites[widget._parent.game.name])
+            ? Text('- QUIT FROM LIST')
+            : Text("+ ADD GAME"),
+        color: (widget._parent._favourites[widget._parent.game.name]) ? Colors.deepOrange : Colors.pink,
         shape: ContinuousRectangleBorder(), // Bordes duros
       ),
     );

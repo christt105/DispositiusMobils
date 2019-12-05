@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:practica1/Containers/game.dart';
+import 'package:flutter/services.dart';
+import 'package:practica2/Containers/game.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
@@ -9,12 +10,14 @@ import 'package:provider/provider.dart';
 class GamePage extends StatelessWidget {
   final Game game;
   final Map<String, Color> _platform;
-  Map<String, bool> _favourites;
+  final Map<String, bool> _favourites;
+  final Function save;
 
-  GamePage(this.game, this._platform, this._favourites);
+  GamePage(this.game, this._platform, this._favourites, this.save);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Provider<Game>.value(
       value: game,
       child: Provider<Map<String, Color>>.value(
@@ -38,7 +41,7 @@ class GamePage extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
-  GamePage parent;
+  final GamePage parent;
   _Header(this.parent);
 
   @override
@@ -85,11 +88,9 @@ class _Header extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.keyboard_arrow_up,
-                        color: Colors.grey,
                       ),
                       Text(
                         "Watch Trailer",
-                        style: TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),
@@ -244,7 +245,7 @@ class _ConsoleContainer extends StatelessWidget {
 }
 
 class _Button extends StatefulWidget {
-  GamePage _parent;
+  final GamePage _parent;
   _Button(this._parent);
 
   @override
@@ -261,14 +262,18 @@ class __ButtonState extends State<_Button> {
           .width, // Esto devuelve el ancho del telefono
       child: FlatButton(
         onPressed: () {
-          widget._parent._favourites[widget._parent.game.name] = !widget._parent._favourites[widget._parent.game.name];
-          
-          setState(() {});
+          setState(() {
+            widget._parent._favourites[widget._parent.game.name] =
+                !widget._parent._favourites[widget._parent.game.name];
+                widget._parent.save();
+          });
         },
         child: (widget._parent._favourites[widget._parent.game.name])
             ? Text('- QUIT FROM LIST')
             : Text("+ ADD GAME"),
-        color: (widget._parent._favourites[widget._parent.game.name]) ? Colors.deepOrange : Colors.pink,
+        color: (widget._parent._favourites[widget._parent.game.name])
+            ? Colors.deepOrange
+            : Colors.pink,
         shape: ContinuousRectangleBorder(), // Bordes duros
       ),
     );

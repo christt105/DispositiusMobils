@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica1/Screens/GameList.dart';
+import 'package:practica2/Screens/GameList.dart';
 
 void main() => runApp(GameInfoApp());
 

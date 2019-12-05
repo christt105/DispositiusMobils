@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:practica1/Containers/game.dart';
-import 'package:practica1/Screens/FavouriteList.dart';
-import 'package:practica1/Screens/GameScreen.dart';
+import 'package:flutter/services.dart';
+import 'package:practica2/Containers/game.dart';
+import 'package:practica2/Screens/FavouriteList.dart';
+import 'package:practica2/Screens/GameScreen.dart';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -29,16 +30,16 @@ class _GameListState extends State<GameList> {
     _platform = Map<String, Color>();
     String data =
         await DefaultAssetBundle.of(context).loadString('assets/Games.json');
-    var _json_games = jsonDecode(data);
+    var _jsonGames = jsonDecode(data);
 
-    for (var p in _json_games['platforms']) {
+    for (var p in _jsonGames['platforms']) {
       _platform.putIfAbsent(
         p['text'],
         () => Color.fromARGB(
             255, p['color']['r'], p['color']['g'], p['color']['b']),
       );
     }
-    for (var i in _json_games['games']) {
+    for (var i in _jsonGames['games']) {
       _games.add(Game.fromJson(i));
     }
 
@@ -47,17 +48,32 @@ class _GameListState extends State<GameList> {
       Directory dir = await getApplicationDocumentsDirectory();
       File file = File('${dir.path}/fav.json');
       String fileContents = await file.readAsString();
-      List jsonFav = jsonDecode(fileContents);
-      for (var f in jsonFav) {
-        _favourites[f['game']] = f['fav'];
+      dynamic jsonFav = jsonDecode(fileContents);
+      for(var i in jsonFav){
+        _favourites[i['name']] = i['fav'];
       }
     } catch (e) {
+      print(e.toString());
       for (var g in _games) {
         _favourites[g.name] = false;
       }
     }
 
     super.setState(() {});
+  }
+
+  Future<void> _saveFavourites() async {
+    Directory dir = await getApplicationDocumentsDirectory();
+    File file = File('${dir.path}/fav.json');
+    List<Map<String, dynamic>> toJson = List<Map<String, dynamic>>();
+    for(var i in _games){
+      Map<String,dynamic> obj = Map<String,dynamic>();
+      obj['name'] = i.name;
+      obj['fav'] = _favourites[i.name];
+      toJson.add(obj);
+    }
+    var json = jsonEncode(toJson);
+    await file.writeAsString(json);
   }
 
   @override
@@ -69,8 +85,10 @@ class _GameListState extends State<GameList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => FavList(_games, _favourites)));
+          Navigator.of(context)
+              .push(MaterialPageRoute(
+                  builder: (_) => FavList(_games, _favourites)))
+              .then((var a) => setState(() {}));
         },
         child: Icon(Icons.favorite),
         foregroundColor: Colors.red,
@@ -96,9 +114,23 @@ class _GameListState extends State<GameList> {
                                   _games[index],
                                   _platform,
                                   _favourites,
-                                )));
+                                  _saveFavourites,
+                                )))
+                        .then((var a) => setState(() {
+                          SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+                        }));
+                  },
+                  onLongPress: () {
+                    setState(() {
+                      _favourites[_games[index].name] =
+                          !_favourites[_games[index].name];
+                      _saveFavourites();
+                    });
                   },
                   child: Card(
+                    color: (_favourites[_games[index].name])
+                        ? Colors.red
+                        : Colors.grey[750],
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: Stack(
                       alignment: AlignmentDirectional.topCenter,
